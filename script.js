@@ -34,7 +34,8 @@ function apiCall (){
 
 function process (result){
     var songs = result.results
-    
-
-
+    var html = "<table border = '5'>";
+    for (var i = 0; i < songs.length; i ++){
+        $("#stuff").append(songs[i].trackName);
+    }
 }

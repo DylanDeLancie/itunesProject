@@ -2,15 +2,6 @@ function search (){
     apiCall(document.getElementById("mySelectBox").value);
 
 }
-function create (artist){
-    $("#table3 tr").empty();
-
-
-
-
-
-}
-
 
 function apiCall (){
 
@@ -39,3 +30,24 @@ function process (result){
         $("#stuff").append(songs[i].trackName);
     }
 }
+
+function makeList (result){
+    $("#things").empty();
+    var songs = result.results;
+    var htm = "<table border = '1'>";
+    for (var i = 0; i < songs.length; i++){
+        htm += "<tr>";
+        htm += "<td>" + songs[i].artistName + "</td>";
+        htm += "<td>" + songs[i].collectionName + "</td>";
+        htm += "<td>" + songs[i].trackName + "</td>";
+        htm += "<td>" + "Play Song:" + "</td>";
+        htm += "<td><audio controls='true' src=" + songs[i].previewUrl + " id= audio type='audio/m4a'></audio> + </td>";
+        htm += "<td> <img src='" + songs[i].artworkUrl100 + "'></td>";
+
+        htm += "</tr>";
+    }
+    htm += "</table>";
+    document.getElementById("output").innerHTML = htm;
+}
+
+

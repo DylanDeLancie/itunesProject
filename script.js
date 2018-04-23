@@ -3,10 +3,7 @@ function search (){
 
 }
 
-function apiCall (){
-
-
-    var artist = $("#mySelectBox").val();
+function apiCall (artist){
 
     $.ajax({
         url: "https://itunes.apple.com/search?term=" + artist,
@@ -17,7 +14,9 @@ function apiCall (){
             console.log(result);
             process(result);
         },
-        error: function() { alert('Failed!'); }
+        error: function() {
+            alert('Failed!');
+        }
     });
 }
 
@@ -46,7 +45,7 @@ function makeList (result){
 
         htm += "</tr>";
     }
-    htm += "</table>";
+    htm += "</things>";
     document.getElementById("output").innerHTML = htm;
 }
 

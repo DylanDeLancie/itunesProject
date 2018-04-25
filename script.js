@@ -1,20 +1,18 @@
-function search (){
-    apiCall(document.getElementById("mySelectBox").value);
-
+function search(){
+    apiCall(document.getElementById("artistSelect").value);
 }
 
-function apiCall (artist){
-
+function apiCall(artist){
     $.ajax({
         url: "https://itunes.apple.com/search?term=" + artist,
         type: 'GET',
         crossDomain: true,
         dataType: 'jsonp',
-        success: function(result) {
+        success: function (result) {
             console.log(result);
-            process(result);
+            listResult(result);
         },
-        error: function() {
+        error: function () {
             alert('Failed!');
         }
     });
@@ -22,31 +20,33 @@ function apiCall (artist){
 
 
 
-function process (result){
-    var songs = result.results
+
+function newFunction(result){
+    var songs = result.results;
     var html = "<table border = '5'>";
     for (var i = 0; i < songs.length; i ++){
-        $("#stuff").append(songs[i].trackName);
+        $("#things").append(songs[i].trackName);
     }
 }
 
-function makeList (result){
+function listResult(result){
     $("#things").empty();
     var songs = result.results;
-    var htm = "<table border = '1'>";
+    var html3 = "<table border = '1'>";
     for (var i = 0; i < songs.length; i++){
-        htm += "<tr>";
-        htm += "<td>" + songs[i].artistName + "</td>";
-        htm += "<td>" + songs[i].collectionName + "</td>";
-        htm += "<td>" + songs[i].trackName + "</td>";
-        htm += "<td>" + "Play Song:" + "</td>";
-        htm += "<td><audio controls='true' src=" + songs[i].previewUrl + " id= audio type='audio/m4a'></audio> + </td>";
-        htm += "<td> <img src='" + songs[i].artworkUrl100 + "'></td>";
+        html3 += "<tr>";
+        html3 += "<td>" + songs[i].artistName + "</td>";
+        html3 += "<td>" + songs[i].collectionName + "</td>";
+        html3 += "<td>" + songs[i].trackName + "</td>";
+        html3 += "<td>" + "Play Song:" + "</td>";
+        html3 += "<td><audio controls='true' src=" + songs[i].previewUrl + " id= audio type='audio/m4a'></audio> + </td>";
+        html3 += "<td> <img src='" + songs[i].artworkUrl100 + "'></td>";
 
-        htm += "</tr>";
+        html3 += "</tr>";
     }
-    htm += "</things>";
-    document.getElementById("output").innerHTML = htm;
+    html3 += "</table>";
+    document.getElementById("resultLists").innerHTML = html3;
 }
+
 
 
